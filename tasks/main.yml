@@ -21,4 +21,3 @@
   when:
     - insecure is undefined
     - no_snitches is undefined
-    - smart_snitch_mapping is defined
