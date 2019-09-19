@@ -1,0 +1,2 @@
+MAILTO=""
+*/15 * * * * root /usr/local/bin/smartcheck.rb /usr/local/etc/smart_snitch_mapping

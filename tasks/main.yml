@@ -1,0 +1,24 @@
+---
+- name: Install smartmontools
+  package:
+    name: smartmontools
+- block:
+  - name: Setup smartcheck.rb
+    copy:
+      src: smartcheck.rb
+      dest: /usr/local/bin/smartcheck.rb
+      mode: 0775
+  - name: Setup smart snitch mapping
+    copy:
+      content: "{{ smart_snitch_mapping | to_nice_json(indent=2) }}"
+      dest: /usr/local/etc/smart_snitch_mapping
+      mode: 0664
+  - name: Setup smart cron
+    copy:
+      src: smart-cron
+      dest: /etc/cron.d/smart
+      mode: 0644
+  when:
+    - insecure is undefined
+    - no_snitches is undefined
+    - smart_snitch_mapping is defined
